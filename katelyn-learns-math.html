@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Katelyn Learns Math! 🎓</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Comic Sans MS', 'Chalkboard SE', 'Arial Rounded MT Bold', cursive, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            max-width: 700px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header-image {
+            max-width: 150px;
+            width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        h1 {
+            color: #667eea;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .emoji {
+            font-size: 3em;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .main-menu {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .main-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 25px;
+            border-radius: 15px;
+            font-size: 1.3em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .main-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        .main-btn.tutorial {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .level-select {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .level-btn {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            border: none;
+            padding: 20px;
+            border-radius: 15px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .level-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        .level-btn.addition {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .level-btn.subtraction {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+
+        .level-btn.multiplication {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+
+        .level-btn.division {
+            background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);
+        }
+
+        .tutorial-area, .quiz-area, .level-selection {
+            display: none;
+        }
+
+        .tutorial-area.active, .quiz-area.active, .level-selection.active {
+            display: block;
+        }
+
+        .tutorial-content {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 30px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+        }
+
+        .tutorial-content h2 {
+            color: #333;
+            font-size: 2em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .tutorial-section {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+
+        .tutorial-section h3 {
+            color: #667eea;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+
+        .tutorial-section p {
+            color: #333;
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .example-box {
+            background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 5px solid #43e97b;
+        }
+
+        .example-box .math-example {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #155724;
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        .tip-box {
+            background: linear-gradient(135deg, #fff7e6 0%, #ffe9b3 100%);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 5px solid #ffa726;
+        }
+
+        .tip-box strong {
+            color: #ff6f00;
+        }
+
+        .question-card {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 30px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .question {
+            font-size: 2.5em;
+            color: #333;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .answer-input {
+            width: 200px;
+            padding: 15px;
+            font-size: 1.5em;
+            border: 3px solid #667eea;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 10px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 5px;
+            transition: transform 0.2s;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .hidden-answer {
+            background: #f0f0f0;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border: 2px dashed #ccc;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .hidden-answer:hover {
+            background: #e0e0e0;
+        }
+
+        .hidden-answer.revealed {
+            background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+            border: 2px solid #43e97b;
+        }
+
+        .answer-text {
+            font-size: 1.3em;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .feedback {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            font-size: 1.3em;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .feedback.correct {
+            background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+            color: #155724;
+        }
+
+        .feedback.incorrect {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            color: #721c24;
+        }
+
+        .score {
+            text-align: center;
+            font-size: 1.5em;
+            color: #667eea;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .back-btn {
+            background: #6c757d;
+        }
+
+        @media (max-width: 600px) {
+            .header-image {
+                max-width: 120px;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+            
+            .question {
+                font-size: 2em;
+            }
+            
+            .level-select {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="https://i.imgur.com/RlLSTNS.png" alt="Katelyn Learns Math" class="header-image">
+            <div class="emoji">🎓✨</div>
+            <h1>Katelyn Learns Math!</h1>
+            <p style="color: #666; font-size: 1.2em;">Let's learn and practice together!</p>
+        </div>
+
+        <!-- Main Menu -->
+        <div id="mainMenu" class="main-menu">
+            <button class="main-btn tutorial" onclick="showTutorialSelection()">
+                📚 Learn Math (Tutorials)
+            </button>
+            <button class="main-btn" onclick="showQuizSelection()">
+                🎮 Practice Quiz
+            </button>
+        </div>
+
+        <!-- Tutorial Selection -->
+        <div id="tutorialSelection" class="level-selection">
+            <h2 style="color: #667eea; text-align: center; margin-bottom: 20px;">Choose a Topic to Learn</h2>
+            <div class="level-select">
+                <button class="level-btn addition" onclick="showTutorial('addition')">
+                    ➕ Addition
+                </button>
+                <button class="level-btn subtraction" onclick="showTutorial('subtraction')">
+                    ➖ Subtraction
+                </button>
+                <button class="level-btn multiplication" onclick="showTutorial('multiplication')">
+                    ✖️ Multiplication
+                </button>
+                <button class="level-btn division" onclick="showTutorial('division')">
+                    ➗ Division
+                </button>
+            </div>
+            <div style="text-align: center; margin-top: 20px;">
+                <button class="btn back-btn" onclick="backToMainMenu()">← Back to Main Menu</button>
+            </div>
+        </div>
+
+        <!-- Quiz Selection -->
+        <div id="quizSelection" class="level-selection">
+            <h2 style="color: #667eea; text-align: center; margin-bottom: 20px;">Choose Your Quiz</h2>
+            <div class="level-select">
+                <button class="level-btn addition" onclick="startQuiz('addition')">
+                    ➕ Addition
+                </button>
+                <button class="level-btn subtraction" onclick="startQuiz('subtraction')">
+                    ➖ Subtraction
+                </button>
+                <button class="level-btn multiplication" onclick="startQuiz('multiplication')">
+                    ✖️ Multiplication
+                </button>
+                <button class="level-btn division" onclick="startQuiz('division')">
+                    ➗ Division
+                </button>
+            </div>
+            <div style="text-align: center; margin-top: 20px;">
+                <button class="btn back-btn" onclick="backToMainMenu()">← Back to Main Menu</button>
+            </div>
+        </div>
+
+        <!-- Tutorial Area -->
+        <div id="tutorialArea" class="tutorial-area">
+            <div id="tutorialContent"></div>
+            <div style="text-align: center; margin-top: 30px;">
+                <button class="btn btn-secondary" onclick="startQuizFromTutorial()">Ready? Take the Quiz! 🎮</button>
+                <button class="btn back-btn" onclick="backToTutorialSelection()">← Back to Tutorials</button>
+            </div>
+        </div>
+
+        <!-- Quiz Area -->
+        <div id="quizArea" class="quiz-area">
+            <div class="score">
+                Score: <span id="score">0</span> / <span id="total">0</span> 🌟
+            </div>
+
+            <div class="question-card">
+                <div class="question" id="question"></div>
+                <input type="number" id="userAnswer" class="answer-input" placeholder="?" />
+                <br>
+                <button class="btn" onclick="checkAnswer()">Check Answer ✓</button>
+                <button class="btn btn-secondary" onclick="nextQuestion()">Next Question →</button>
+            </div>
+
+            <div class="hidden-answer" id="hiddenBox" onclick="revealAnswer()">
+                <p style="color: #666; margin-bottom: 10px;">📦 Click to reveal the answer</p>
+                <div class="answer-text" id="correctAnswer" style="display: none;"></div>
+            </div>
+
+            <div id="feedback"></div>
+
+            <div style="text-align: center; margin-top: 30px;">
+                <button class="btn back-btn" onclick="backToQuizSelection()">← Back to Quiz Menu</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentLevel = '';
+        let currentQuestion = {};
+        let score = 0;
+        let totalQuestions = 0;
+
+        const tutorials = {
+            addition: `
+                <div class="tutorial-content">
+                    <h2>➕ Addition - Adding Numbers Together</h2>
+                    
+                    <div class="tutorial-section">
+                        <h3>What is Addition?</h3>
+                        <p>Addition means combining two or more numbers to find their total. When we add, we're putting things together!</p>
+                        
+                        <div class="example-box">
+                            <p>🍎 If you have 3 apples and your friend gives you 2 more apples, how many do you have in total?</p>
+                            <div class="math-example">3 + 2 = 5</div>
+                            <p>You now have 5 apples! 🍎🍎🍎🍎🍎</p>
+                        </div>
+                    </div>
+
+                    <div class="tutorial-section">
+                        <h3>How to Add</h3>
+                        <p><strong>Step 1:</strong> Start with the first number</p>
+                        <p><strong>Step 2:</strong> Count up by the second number</p>
+                        <p><strong>Step 3:</strong> The number you land on is your answer!</p>
+                        
+                        <div class="example-box">
+                            <p>Let's solve: <strong>7 + 4 = ?</strong></p>
+                            <p>Start at 7, then count up 4 times:</p>
+                            <div class="math-example">7 → 8 → 9 → 10 → 11</div>
+                            <p><strong>Answer: 7 + 4 = 11</strong></p>
+                        </div>
+                    </div>
+
+                    <div class="tutorial-section">
+                        <h3>More Examples</h3>
+                        <div class="example-box">
+                            <div class="math-example">5 + 3 = 8</div>
+                        </div>
+                        <div class="example-box">
+                            <div class="math-example">12 + 6 = 18</div>
+                        </div>
+                        <div class="example-box">
+                            <div class="math-example">20 + 15 = 35</div>
+                        </div>
+                    </div>
+
+                    <div class="tip-box">
+                        <strong>💡 Helpful Tip:</strong> The order doesn't matter! 3 + 5 is the same as 5 + 3. Both equal 8!
+                    </div>
+                </div>
+            `,
+            subtraction: `
+                <div class="tutorial-content">
+                    <h2>➖ Subtraction - Taking Away</h2>
+                    
+                    <div class="tutorial-section">
+                        <h3>What is Subtraction?</h3>
+                        <p>Subtraction means taking away one number from another. It's the opposite of addition!</p>
+                        
+                        <div class="example-box">
+                            <p>🍪 If you have 8 cookies and eat 3 of them, how many are left?</p>
+                            <div class="math-example">8 - 3 = 5</div>
+                            <p>You have 5 cookies left! 🍪🍪🍪🍪🍪</p>
+                        </div>
+                    </div>
+
+                    <div class="tutorial-section">
+                        <h3>How to Subtract</h3>
+                        <p><strong>Step 1:</strong> Start with the bigger number (the first number)</p>
+                        <p><strong>Step 2:</strong> Count backwards by the second number</p>
+                        <p><strong>Step 3:</strong> The number you land on is your answer!</p>
+                        
+                        <div class="example-box">
+                            <p>Let's solve: <strong>15 - 6 = ?</strong></p>
+                            <p>Start at 15, then count back 6 times:</p>
+                            <div class="math-example">15 → 14 → 13 → 12 → 11 → 10 → 9</div>
+                            <p><strong>Answer: 15 - 6 = 9</strong></p>
+                        </div>
+                    </div>
+
+                    <div class="tutorial-section">
+                        <h3>More Examples</h3>
+                        <div class="example-box">
+                            <div class="math-example">10 - 4 = 6</div>
+                        </div>
+                        <div class="example-box">
+                            <div class="math-example">25 - 8 = 17</div>
+                        </div>
+                        <div class="example-box">
+                            <div class="math-example">50 - 12 = 38</div>
+                        </div>
+                    </div>
+
+                    <div class="tip-box">
+                        <strong>💡 Helpful Tip:</strong> If you subtract 0 from any number, you get the same number! Example: 7 - 0 = 7
+                    </div>
+                </div>
+            `,
+            multiplication: `
+                <div class="tutorial-content">
+                    <h2>✖️ Multiplication - Quick Adding!</h2>
+                    
+                    <div class="tutorial-section">
+                        <h3>What is Multiplication?</h3>
+                        <p>Multiplication is a fast way to add the same number multiple times. Instead of adding over and over, we multiply!</p>
+                        
+                        <div class="example-box">
+                            <p>🌟 If you have 4 bags with 3 stars in each bag, how many stars total?</p>
+                            <p>Instead of: 3 + 3 + 3 + 3 = 12</p>
+                            <div class="math-example">4 × 3 = 12</div>
+                            <p>You have 12 stars! ✨</p>
+                        </div>
+                    </div>
+
+                    <div class="tutorial-section">
+                        <h3>Understanding Multiplication</h3>
+                        <p><strong>3 × 4</strong> means "3 groups of 4" or "add 4 three times"</p>
+                        
+                        <div class="example-box">
+                            <p><strong>3 × 4 = ?</strong></p>
+                            <p>This is the same as: 4 + 4 + 4</p>
+                            <div class="math-example">3 × 4 = 12</div>
+                        </div>
+                    </div>
+
+                    <div class="tutorial-section">
+                        <h3>Times Tables to Remember</h3>
+                        <div class="example-box">
+                            <div class="math-example">2 × 3 = 6</div>
+                        </div>
+                        <div class="example-box">
+                            <div class="math-example">5 × 4 = 20</div>
+                        </div>
+                        <div class="example-box">
+                            <div class="math-example">6 × 7 = 42</div>
+                        </div>
+                        <div class="example-box">
+                            <div class="math-example">8 × 9 = 72</div>
+                        </div>
+                    </div>
+
+                    <div class="tip-box">
+                        <strong>💡 Helpful Tip:</strong> Just like addition, order doesn't matter! 3 × 5 is the same as 5 × 3. Both equal 15!
+                    </div>
+
+                    <div class="tip-box">
+                        <strong>💡 Easy Trick:</strong> Multiplying by 10? Just add a zero! Example: 7 × 10 = 70
+                    </div>
+                </div>
+            `,
+            division: `
+                <div class="tutorial-content">
+                    <h2>➗ Division - Sharing Equally</h2>
+                    
+                    <div class="tutorial-section">
+                        <h3>What is Division?</h3>
+                        <p>Division means splitting a number into equal groups. It's like sharing things fairly!</p>
+                        
+                        <div class="example-box">
+                            <p>🍕 If you have 12 slices of pizza to share equally among 4 friends, how many slices does each person get?</p>
+                            <div class="math-example">12 ÷ 4 = 3</div>
+                            <p>Each friend gets 3 slices! 🍕🍕🍕</p>
+                        </div>
+                    </div>
+
+                    <div class="tutorial-section">
+                        <h3>Understanding Division</h3>
+                        <p>Division is the opposite of multiplication!</p>
+                        <p><strong>12 ÷ 3</strong> means "split 12 into 3 equal groups"</p>
+                        
+                        <div class="example-box">
+                            <p><strong>12 ÷ 3 = ?</strong></p>
+                            <p>Think: What number times 3 equals 12?</p>
+                            <p>4 × 3 = 12, so...</p>
+                            <div class="math-example">12 ÷ 3 = 4</div>
+                        </div>
+                    </div>
+
+                    <div class="tutorial-section">
+                        <h3>More Examples</h3>
+                        <div class="example-box">
+                            <p>20 ÷ 5 = ? → Think: 5 × ? = 20</p>
+                            <div class="math-example">20 ÷ 5 = 4</div>
+                        </div>
+                        <div class="example-box">
+                            <p>18 ÷ 6 = ? → Think: 6 × ? = 18</p>
+                            <div class="math-example">18 ÷ 6 = 3</div>
+                        </div>
+                        <div class="example-box">
+                            <p>36 ÷ 9 = ? → Think: 9 × ? = 36</p>
+                            <div class="math-example">36 ÷ 9 = 4</div>
+                        </div>
+                    </div>
+
+                    <div class="tip-box">
+                        <strong>💡 Helpful Tip:</strong> Any number divided by itself equals 1! Example: 5 ÷ 5 = 1
+                    </div>
+
+                    <div class="tip-box">
+                        <strong>💡 Helpful Tip:</strong> Any number divided by 1 equals that same number! Example: 8 ÷ 1 = 8
+                    </div>
+                </div>
+            `
+        };
+
+        function showTutorialSelection() {
+            document.getElementById('mainMenu').style.display = 'none';
+            document.getElementById('tutorialSelection').classList.add('active');
+        }
+
+        function showQuizSelection() {
+            document.getElementById('mainMenu').style.display = 'none';
+            document.getElementById('quizSelection').classList.add('active');
+        }
+
+        function backToMainMenu() {
+            document.getElementById('mainMenu').style.display = 'grid';
+            document.getElementById('tutorialSelection').classList.remove('active');
+            document.getElementById('quizSelection').classList.remove('active');
+        }
+
+        function showTutorial(topic) {
+            currentLevel = topic;
+            document.getElementById('tutorialSelection').classList.remove('active');
+            document.getElementById('tutorialArea').classList.add('active');
+            document.getElementById('tutorialContent').innerHTML = tutorials[topic];
+            document.querySelector('.container').scrollTop = 0;
+        }
+
+        function backToTutorialSelection() {
+            document.getElementById('tutorialArea').classList.remove('active');
+            document.getElementById('tutorialSelection').classList.add('active');
+        }
+
+        function startQuizFromTutorial() {
+            document.getElementById('tutorialArea').classList.remove('active');
+            startQuiz(currentLevel);
+        }
+
+        function backToQuizSelection() {
+            document.getElementById('quizArea').classList.remove('active');
+            document.getElementById('quizSelection').classList.add('active');
+        }
+
+        function startQuiz(level) {
+            currentLevel = level;
+            score = 0;
+            totalQuestions = 0;
+            document.getElementById('quizSelection').classList.remove('active');
+            document.getElementById('quizArea').classList.add('active');
+            updateScore();
+            generateQuestion();
+            document.querySelector('.container').scrollTop = 0;
+        }
+
+        function generateQuestion() {
+            let num1, num2, answer, questionText;
+            
+            switch(currentLevel) {
+                case 'addition':
+                    num1 = Math.floor(Math.random() * 50) + 1;
+                    num2 = Math.floor(Math.random() * 50) + 1;
+                    answer = num1 + num2;
+                    questionText = `${num1} + ${num2} = ?`;
+                    break;
+                
+                case 'subtraction':
+                    num1 = Math.floor(Math.random() * 50) + 20;
+                    num2 = Math.floor(Math.random() * num1) + 1;
+                    answer = num1 - num2;
+                    questionText = `${num1} - ${num2} = ?`;
+                    break;
+                
+                case 'multiplication':
+                    num1 = Math.floor(Math.random() * 12) + 1;
+                    num2 = Math.floor(Math.random() * 12) + 1;
+                    answer = num1 * num2;
+                    questionText = `${num1} × ${num2} = ?`;
+                    break;
+                
+                case 'division':
+                    num2 = Math.floor(Math.random() * 10) + 2;
+                    answer = Math.floor(Math.random() * 12) + 1;
+                    num1 = num2 * answer;
+                    questionText = `${num1} ÷ ${num2} = ?`;
+                    break;
+            }
+
+            currentQuestion = {
+                text: questionText,
+                answer: answer
+            };
+
+            document.getElementById('question').textContent = questionText;
+            document.getElementById('userAnswer').value = '';
+            document.getElementById('feedback').innerHTML = '';
+            document.getElementById('hiddenBox').classList.remove('revealed');
+            document.getElementById('correctAnswer').style.display = 'none';
+            document.getElementById('correctAnswer').textContent = `The answer is: ${answer}`;
+        }
+
+        function checkAnswer() {
+            const userAnswer = parseInt(document.getElementById('userAnswer').value);
+            const feedbackDiv = document.getElementById('feedback');
+            
+            if (isNaN(userAnswer)) {
+                feedbackDiv.innerHTML = '<div class="feedback incorrect">Please enter a number! 🤔</div>';
+                return;
+            }
+
+            totalQuestions++;
+            
+            if (userAnswer === currentQuestion.answer) {
+                score++;
+                feedbackDiv.innerHTML = '<div class="feedback correct">🎉 Excellent! That\'s correct! 🌟</div>';
+            } else {
+                feedbackDiv.innerHTML = `<div class="feedback incorrect">Not quite! Try again or check the answer box below. 💪</div>`;
+            }
+            
+            updateScore();
+        }
+
+        function revealAnswer() {
+            const answerDiv = document.getElementById('correctAnswer');
+            const hiddenBox = document.getElementById('hiddenBox');
+            
+            if (answerDiv.style.display === 'none') {
+                answerDiv.style.display = 'block';
+                hiddenBox.classList.add('revealed');
+            } else {
+                answerDiv.style.display = 'none';
+                hiddenBox.classList.remove('revealed');
+            }
+        }
+
+        function nextQuestion() {
+            generateQuestion();
+        }
+
+        function updateScore() {
+            document.getElementById('score').textContent = score;
+            document.getElementById('total').textContent = totalQuestions;
+        }
+
+        // Allow Enter key to submit answer
+        document.getElementById('userAnswer').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                checkAnswer();
+            }
+        });
+    </script>
+</body>
+</html>
