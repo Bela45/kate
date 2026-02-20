@@ -305,6 +305,297 @@
             background: #6c757d;
         }
 
+        /* Long Division Bracket Style */
+        .long-division {
+            display: inline-block;
+            text-align: center;
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #155724;
+            margin: 10px auto;
+        }
+
+        .long-division .ld-quotient {
+            display: block;
+            text-align: right;
+            padding-right: 8px;
+            border-bottom: 3px solid #155724;
+            padding-bottom: 4px;
+            margin-bottom: 4px;
+            color: #764ba2;
+        }
+
+        .long-division .ld-body {
+            display: flex;
+            align-items: center;
+        }
+
+        .long-division .ld-divisor {
+            padding-right: 6px;
+            border-right: 3px solid #155724;
+        }
+
+        .long-division .ld-dividend {
+            padding-left: 8px;
+            border-top: 3px solid #155724;
+            padding-top: 4px;
+        }
+
+        /* Quiz vertical division */
+        .long-division-quiz {
+            display: inline-block;
+            font-size: 2.2em;
+            font-weight: bold;
+            color: #333;
+            margin: 10px auto 20px;
+        }
+
+        .long-division-quiz .ldq-quotient {
+            display: block;
+            text-align: right;
+            padding-right: 8px;
+            border-bottom: 3px solid #333;
+            padding-bottom: 4px;
+            margin-bottom: 4px;
+            color: #764ba2;
+        }
+
+        .long-division-quiz .ldq-body {
+            display: flex;
+            align-items: center;
+        }
+
+        .long-division-quiz .ldq-divisor {
+            padding-right: 8px;
+            border-right: 3px solid #333;
+        }
+
+        .long-division-quiz .ldq-dividend {
+            padding-left: 10px;
+            border-top: 3px solid #333;
+            padding-top: 4px;
+        }
+
+        .vertical-math {
+            display: inline-block;
+            text-align: right;
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #155724;
+            background: white;
+            border-radius: 10px;
+            padding: 15px 25px;
+            margin: 10px auto;
+            border-bottom: 4px solid #155724;
+            min-width: 120px;
+        }
+
+        .vertical-math .vm-num1,
+        .vertical-math .vm-num2-row,
+        .vertical-math .vm-answer {
+            display: block;
+            line-height: 1.4;
+        }
+
+        .vertical-math .vm-num2-row {
+            border-bottom: 3px solid #155724;
+            padding-bottom: 5px;
+            margin-bottom: 5px;
+        }
+
+        .vertical-math .vm-operator {
+            margin-right: 5px;
+            color: #764ba2;
+        }
+
+        .vertical-example-box {
+            background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 5px solid #43e97b;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .vertical-example-box .horizontal-side {
+            font-size: 1.6em;
+            font-weight: bold;
+            color: #155724;
+            flex: 1;
+            min-width: 120px;
+        }
+
+        .vertical-example-box .arrow {
+            font-size: 2em;
+            color: #764ba2;
+        }
+
+        .vertical-example-box .vertical-side {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* Vertical Quiz Question */
+        .vertical-question-display {
+            display: inline-block;
+            text-align: right;
+            font-size: 2.2em;
+            font-weight: bold;
+            color: #333;
+            margin: 10px auto 20px;
+            min-width: 140px;
+        }
+
+        .vertical-question-display .vq-num1,
+        .vertical-question-display .vq-num2-row,
+        .vertical-question-display .vq-answer-row {
+            display: block;
+            line-height: 1.5;
+        }
+
+        .vertical-question-display .vq-num2-row {
+            border-bottom: 3px solid #333;
+            padding-bottom: 5px;
+            margin-bottom: 5px;
+        }
+
+        .vertical-question-display .vq-operator {
+            margin-right: 5px;
+            color: #764ba2;
+        }
+
+        .vertical-question-display .vq-answer-row {
+            color: #764ba2;
+        }
+
+        .question-format-toggle {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .format-btn {
+            background: #e0e0e0;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 0.95em;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.2s;
+        }
+
+        .format-btn.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        /* ===== TABLES SECTION ===== */
+        .tables-tab-bar {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 18px;
+        }
+
+        .tables-tab {
+            background: #e8e8f0;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 20px 20px 0 0;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            font-family: inherit;
+            transition: all 0.2s;
+            color: #555;
+            border-bottom: 3px solid transparent;
+        }
+
+        .tables-tab.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-bottom: 3px solid #764ba2;
+        }
+
+        .tables-number-bar {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .num-btn {
+            width: 44px;
+            height: 44px;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            font-family: inherit;
+            background: #e8e8f0;
+            color: #555;
+            transition: all 0.2s;
+        }
+
+        .num-btn.active {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .tables-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        .table-card {
+            background: linear-gradient(135deg, #f5f7ff 0%, #e8ecff 100%);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(102,126,234,0.15);
+        }
+
+        .table-card-header {
+            padding: 10px;
+            text-align: center;
+            font-size: 1.1em;
+            font-weight: bold;
+            color: white;
+        }
+
+        .table-card-header.mult  { background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); }
+        .table-card-header.add   { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+        .table-card-header.sub   { background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); }
+        .table-card-header.div   { background: linear-gradient(135deg, #30cfd0 0%, #667eea 100%); }
+
+        .table-card-row {
+            padding: 7px 14px;
+            font-size: 1em;
+            color: #333;
+            border-bottom: 1px solid #dde3ff;
+        }
+
+        .table-card-row:last-child {
+            border-bottom: none;
+        }
+
+        .table-card-row:nth-child(even) {
+            background: rgba(102,126,234,0.05);
+        }
+
+        /* ===== END TABLES SECTION ===== */
+
         @media (max-width: 600px) {
             .header-image {
                 max-width: 120px;
@@ -337,6 +628,9 @@
         <div id="mainMenu" class="main-menu">
             <button class="main-btn tutorial" onclick="showTutorialSelection()">
                 📚 Learn Math (Tutorials)
+            </button>
+            <button class="main-btn" onclick="showTablesMenu()">
+                📊 Times Tables & Charts
             </button>
             <button class="main-btn" onclick="showQuizSelection()">
                 🎮 Practice Quiz
@@ -403,7 +697,14 @@
             </div>
 
             <div class="question-card">
+                <div class="question-format-toggle">
+                    <button class="format-btn active" id="btnHorizontal" onclick="setFormat('horizontal')">➡️ Horizontal</button>
+                    <button class="format-btn" id="btnVertical" onclick="setFormat('vertical')">⬇️ Vertical</button>
+                </div>
                 <div class="question" id="question"></div>
+                <div id="questionVertical" style="display:none; text-align:center;">
+                    <div class="vertical-question-display" id="questionVerticalDisplay"></div>
+                </div>
                 <input type="number" id="userAnswer" class="answer-input" placeholder="?" />
                 <br>
                 <button class="btn" onclick="checkAnswer()">Check Answer ✓</button>
@@ -421,6 +722,29 @@
                 <button class="btn back-btn" onclick="backToQuizSelection()">← Back to Quiz Menu</button>
             </div>
         </div>
+
+        <!-- Tables Area -->
+        <div id="tablesArea" class="tutorial-area">
+            <h2 style="color: #667eea; text-align: center; margin-bottom: 20px;">📊 Math Tables (1 to 10)</h2>
+
+            <!-- Operation Tabs -->
+            <div class="tables-tab-bar">
+                <button class="tables-tab active" id="tab-multiplication" onclick="showTable('multiplication')">✖️ Multiply</button>
+                <button class="tables-tab" id="tab-addition" onclick="showTable('addition')">➕ Add</button>
+                <button class="tables-tab" id="tab-subtraction" onclick="showTable('subtraction')">➖ Subtract</button>
+                <button class="tables-tab" id="tab-division" onclick="showTable('division')">➗ Divide</button>
+            </div>
+
+            <!-- Number Selector -->
+            <div class="tables-number-bar" id="tablesNumberBar"></div>
+
+            <!-- Table Display -->
+            <div id="tableDisplay"></div>
+
+            <div style="text-align: center; margin-top: 25px;">
+                <button class="btn back-btn" onclick="backFromTables()">← Back to Main Menu</button>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -428,6 +752,23 @@
         let currentQuestion = {};
         let score = 0;
         let totalQuestions = 0;
+        let questionFormat = 'horizontal';
+
+        function setFormat(fmt) {
+            questionFormat = fmt;
+            document.getElementById('btnHorizontal').classList.toggle('active', fmt === 'horizontal');
+            document.getElementById('btnVertical').classList.toggle('active', fmt === 'vertical');
+            document.getElementById('question').style.display = fmt === 'horizontal' ? 'block' : 'none';
+            document.getElementById('questionVertical').style.display = fmt === 'vertical' ? 'block' : 'none';
+        }
+
+        function buildVerticalQuestion(num1, num2, operator) {
+            return `<div class="vertical-question-display">
+                        <span class="vq-num1">${num1}</span>
+                        <span class="vq-num2-row"><span class="vq-operator">${operator}</span>${num2}</span>
+                        <span class="vq-answer-row">?</span>
+                    </div>`;
+        }
 
         const tutorials = {
             addition: `
@@ -469,6 +810,44 @@
                         </div>
                         <div class="example-box">
                             <div class="math-example">20 + 15 = 35</div>
+                        </div>
+                    </div>
+
+                    <div class="tutorial-section">
+                        <h3>📐 Vertical (Column) Format</h3>
+                        <p>Another way to write addition is <strong>vertically</strong> — stacking the numbers on top of each other!</p>
+                        <div class="vertical-example-box">
+                            <div class="horizontal-side">5 + 3 = 8</div>
+                            <div class="arrow">➡️</div>
+                            <div class="vertical-side">
+                                <div class="vertical-math">
+                                    <span class="vm-num1">5</span>
+                                    <span class="vm-num2-row"><span class="vm-operator">+</span>3</span>
+                                    <span>8</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="vertical-example-box">
+                            <div class="horizontal-side">12 + 6 = 18</div>
+                            <div class="arrow">➡️</div>
+                            <div class="vertical-side">
+                                <div class="vertical-math">
+                                    <span class="vm-num1">12</span>
+                                    <span class="vm-num2-row"><span class="vm-operator">+</span>6</span>
+                                    <span>18</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="vertical-example-box">
+                            <div class="horizontal-side">20 + 15 = 35</div>
+                            <div class="arrow">➡️</div>
+                            <div class="vertical-side">
+                                <div class="vertical-math">
+                                    <span class="vm-num1">20</span>
+                                    <span class="vm-num2-row"><span class="vm-operator">+</span>15</span>
+                                    <span>35</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -519,6 +898,44 @@
                         </div>
                     </div>
 
+                    <div class="tutorial-section">
+                        <h3>📐 Vertical (Column) Format</h3>
+                        <p>Subtraction can also be written <strong>vertically</strong> — the bigger number goes on top!</p>
+                        <div class="vertical-example-box">
+                            <div class="horizontal-side">10 − 4 = 6</div>
+                            <div class="arrow">➡️</div>
+                            <div class="vertical-side">
+                                <div class="vertical-math">
+                                    <span class="vm-num1">10</span>
+                                    <span class="vm-num2-row"><span class="vm-operator">−</span>4</span>
+                                    <span>6</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="vertical-example-box">
+                            <div class="horizontal-side">25 − 8 = 17</div>
+                            <div class="arrow">➡️</div>
+                            <div class="vertical-side">
+                                <div class="vertical-math">
+                                    <span class="vm-num1">25</span>
+                                    <span class="vm-num2-row"><span class="vm-operator">−</span>8</span>
+                                    <span>17</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="vertical-example-box">
+                            <div class="horizontal-side">50 − 12 = 38</div>
+                            <div class="arrow">➡️</div>
+                            <div class="vertical-side">
+                                <div class="vertical-math">
+                                    <span class="vm-num1">50</span>
+                                    <span class="vm-num2-row"><span class="vm-operator">−</span>12</span>
+                                    <span>38</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="tip-box">
                         <strong>💡 Helpful Tip:</strong> If you subtract 0 from any number, you get the same number! Example: 7 - 0 = 7
                     </div>
@@ -564,6 +981,44 @@
                         </div>
                         <div class="example-box">
                             <div class="math-example">8 × 9 = 72</div>
+                        </div>
+                    </div>
+
+                    <div class="tutorial-section">
+                        <h3>📐 Vertical (Column) Format</h3>
+                        <p>Multiplication is often written <strong>vertically</strong> too — especially for bigger numbers!</p>
+                        <div class="vertical-example-box">
+                            <div class="horizontal-side">2 × 3 = 6</div>
+                            <div class="arrow">➡️</div>
+                            <div class="vertical-side">
+                                <div class="vertical-math">
+                                    <span class="vm-num1">2</span>
+                                    <span class="vm-num2-row"><span class="vm-operator">×</span>3</span>
+                                    <span>6</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="vertical-example-box">
+                            <div class="horizontal-side">5 × 4 = 20</div>
+                            <div class="arrow">➡️</div>
+                            <div class="vertical-side">
+                                <div class="vertical-math">
+                                    <span class="vm-num1">5</span>
+                                    <span class="vm-num2-row"><span class="vm-operator">×</span>4</span>
+                                    <span>20</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="vertical-example-box">
+                            <div class="horizontal-side">6 × 7 = 42</div>
+                            <div class="arrow">➡️</div>
+                            <div class="vertical-side">
+                                <div class="vertical-math">
+                                    <span class="vm-num1">6</span>
+                                    <span class="vm-num2-row"><span class="vm-operator">×</span>7</span>
+                                    <span>42</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -617,6 +1072,53 @@
                         <div class="example-box">
                             <p>36 ÷ 9 = ? → Think: 9 × ? = 36</p>
                             <div class="math-example">36 ÷ 9 = 4</div>
+                        </div>
+                    </div>
+
+                    <div class="tutorial-section">
+                        <h3>📐 Vertical (Long Division) Format</h3>
+                        <p>Division has a special vertical format called <strong>long division</strong>! The divisor goes on the left, the dividend goes inside the bracket, and the answer (quotient) goes on top.</p>
+                        <div class="vertical-example-box">
+                            <div class="horizontal-side">20 ÷ 5 = 4</div>
+                            <div class="arrow">➡️</div>
+                            <div class="vertical-side">
+                                <div class="long-division">
+                                    <span class="ld-quotient">4</span>
+                                    <div class="ld-body">
+                                        <span class="ld-divisor">5</span>
+                                        <span class="ld-dividend">20</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="vertical-example-box">
+                            <div class="horizontal-side">18 ÷ 6 = 3</div>
+                            <div class="arrow">➡️</div>
+                            <div class="vertical-side">
+                                <div class="long-division">
+                                    <span class="ld-quotient">3</span>
+                                    <div class="ld-body">
+                                        <span class="ld-divisor">6</span>
+                                        <span class="ld-dividend">18</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="vertical-example-box">
+                            <div class="horizontal-side">36 ÷ 9 = 4</div>
+                            <div class="arrow">➡️</div>
+                            <div class="vertical-side">
+                                <div class="long-division">
+                                    <span class="ld-quotient">4</span>
+                                    <div class="ld-body">
+                                        <span class="ld-divisor">9</span>
+                                        <span class="ld-dividend">36</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tip-box">
+                            <strong>💡 Remember:</strong> The number being divided (dividend) goes <em>inside</em> the bracket. The number dividing it (divisor) goes <em>outside</em> on the left. The answer (quotient) goes <em>on top</em>!
                         </div>
                     </div>
 
@@ -682,7 +1184,7 @@
         }
 
         function generateQuestion() {
-            let num1, num2, answer, questionText;
+            let num1, num2, answer, questionText, verticalHTML;
             
             switch(currentLevel) {
                 case 'addition':
@@ -690,6 +1192,7 @@
                     num2 = Math.floor(Math.random() * 50) + 1;
                     answer = num1 + num2;
                     questionText = `${num1} + ${num2} = ?`;
+                    verticalHTML = buildVerticalQuestion(num1, num2, '+');
                     break;
                 
                 case 'subtraction':
@@ -697,6 +1200,7 @@
                     num2 = Math.floor(Math.random() * num1) + 1;
                     answer = num1 - num2;
                     questionText = `${num1} - ${num2} = ?`;
+                    verticalHTML = buildVerticalQuestion(num1, num2, '−');
                     break;
                 
                 case 'multiplication':
@@ -704,6 +1208,7 @@
                     num2 = Math.floor(Math.random() * 12) + 1;
                     answer = num1 * num2;
                     questionText = `${num1} × ${num2} = ?`;
+                    verticalHTML = buildVerticalQuestion(num1, num2, '×');
                     break;
                 
                 case 'division':
@@ -711,6 +1216,13 @@
                     answer = Math.floor(Math.random() * 12) + 1;
                     num1 = num2 * answer;
                     questionText = `${num1} ÷ ${num2} = ?`;
+                    verticalHTML = `<div class="long-division-quiz">
+                        <span class="ldq-quotient">?</span>
+                        <div class="ldq-body">
+                            <span class="ldq-divisor">${num2}</span>
+                            <span class="ldq-dividend">${num1}</span>
+                        </div>
+                    </div>`;
                     break;
             }
 
@@ -720,6 +1232,7 @@
             };
 
             document.getElementById('question').textContent = questionText;
+            document.getElementById('questionVerticalDisplay').innerHTML = verticalHTML || '';
             document.getElementById('userAnswer').value = '';
             document.getElementById('feedback').innerHTML = '';
             document.getElementById('hiddenBox').classList.remove('revealed');
@@ -776,6 +1289,113 @@
                 checkAnswer();
             }
         });
+
+        // ===== TABLES SECTION =====
+        let currentTableOp = 'multiplication';
+        let currentTableNum = 1;
+
+        function showTablesMenu() {
+            document.getElementById('mainMenu').style.display = 'none';
+            document.getElementById('tablesArea').classList.add('active');
+            buildNumberBar();
+            renderTable(currentTableOp, currentTableNum);
+            document.querySelector('.container').scrollTop = 0;
+        }
+
+        function backFromTables() {
+            document.getElementById('tablesArea').classList.remove('active');
+            document.getElementById('mainMenu').style.display = 'grid';
+        }
+
+        function buildNumberBar() {
+            const bar = document.getElementById('tablesNumberBar');
+            bar.innerHTML = '';
+            for (let i = 1; i <= 10; i++) {
+                const btn = document.createElement('button');
+                btn.className = 'num-btn' + (i === currentTableNum ? ' active' : '');
+                btn.textContent = i;
+                btn.onclick = () => selectNumber(i);
+                bar.appendChild(btn);
+            }
+        }
+
+        function selectNumber(n) {
+            currentTableNum = n;
+            document.querySelectorAll('.num-btn').forEach((b, i) => {
+                b.classList.toggle('active', i + 1 === n);
+            });
+            renderTable(currentTableOp, n);
+        }
+
+        function showTable(op) {
+            currentTableOp = op;
+            ['multiplication','addition','subtraction','division'].forEach(o => {
+                document.getElementById('tab-' + o).classList.toggle('active', o === op);
+            });
+            renderTable(op, currentTableNum);
+        }
+
+        function getOperatorSymbol(op) {
+            return { multiplication: '×', addition: '+', subtraction: '−', division: '÷' }[op];
+        }
+
+        function getHeaderClass(op) {
+            return { multiplication: 'mult', addition: 'add', subtraction: 'sub', division: 'div' }[op];
+        }
+
+        function calcResult(op, base, i) {
+            if (op === 'multiplication') return base * i;
+            if (op === 'addition')       return base + i;
+            if (op === 'subtraction')    return base - i;
+            if (op === 'division')       return base; // base ÷ i — we'll handle below
+        }
+
+        function renderTable(op, selectedNum) {
+            const display = document.getElementById('tableDisplay');
+            const sym = getOperatorSymbol(op);
+            const hClass = getHeaderClass(op);
+
+            // Show 4 tables at a time centred on selectedNum (like photo showing 4 columns)
+            // But we'll show ALL 10 tables in a scrollable grid, highlighting selected
+            // Actually: show only 1 selected table big, then small cards for others
+            // Let's show 4 cards per row like the photo: the selected number + surrounding
+
+            // Strategy: show all 10 tables as cards, highlight the selected one
+            let html = '<div class="tables-grid">';
+
+            for (let base = 1; base <= 10; base++) {
+                const isSelected = base === selectedNum;
+                html += `<div class="table-card" style="${isSelected ? 'box-shadow: 0 6px 20px rgba(102,126,234,0.4); transform: scale(1.03);' : ''}">`;
+                html += `<div class="table-card-header ${hClass}">Table of ${base}</div>`;
+                for (let i = 1; i <= 10; i++) {
+                    let result, expr;
+                    if (op === 'division') {
+                        // base × i ÷ base = i, so dividend = base*i
+                        const dividend = base * i;
+                        result = i;
+                        expr = `${dividend} ${sym} ${base} = ${result}`;
+                    } else {
+                        result = op === 'multiplication' ? base * i
+                               : op === 'addition'       ? base + i
+                               : base - i;
+                        expr = `${base} ${sym} ${i} = ${result}`;
+                    }
+                    html += `<div class="table-card-row">${expr}</div>`;
+                }
+                html += `</div>`;
+            }
+
+            html += '</div>';
+            display.innerHTML = html;
+            // Scroll to highlighted card
+            setTimeout(() => {
+                const cards = display.querySelectorAll('.table-card');
+                if (cards[selectedNum - 1]) {
+                    cards[selectedNum - 1].scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }
+            }, 50);
+        }
+        // ===== END TABLES SECTION =====
     </script>
 </body>
 </html>
