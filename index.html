@@ -607,15 +607,15 @@
 
         .counting-grid {
             display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 8px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
             margin-bottom: 10px;
         }
 
         .count-cell {
             border: none;
-            border-radius: 10px;
-            padding: 10px 4px;
+            border-radius: 12px;
+            padding: 16px 4px;
             font-family: inherit;
             font-weight: bold;
             color: white;
@@ -624,21 +624,23 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 2px;
+            gap: 4px;
             transition: transform 0.15s, box-shadow 0.15s;
             box-shadow: 0 3px 8px rgba(0,0,0,0.15);
         }
 
         .count-cell .cc-num {
-            font-size: 1.3em;
+            font-size: 2em;
             line-height: 1.1;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
         }
 
         .count-cell .cc-word {
-            font-size: 0.6em;
+            font-size: 0.75em;
             text-transform: uppercase;
-            opacity: 0.9;
+            opacity: 0.95;
             letter-spacing: 0.3px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
         }
 
         .count-cell:hover {
@@ -662,7 +664,7 @@
 
         @media (max-width: 600px) {
             .counting-grid {
-                grid-template-columns: repeat(4, 1fr);
+                grid-template-columns: repeat(3, 1fr);
             }
         }
         /* ===== END COUNTING NUMBERS SECTION ===== */
