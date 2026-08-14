@@ -669,6 +669,58 @@
         }
         /* ===== END COUNTING NUMBERS SECTION ===== */
 
+        /* ===== LESSONS SECTION ===== */
+        .lesson-progress {
+            text-align: center;
+            font-size: 1.1em;
+            color: #667eea;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .place-value-box {
+            display: flex;
+            justify-content: center;
+            gap: 6px;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        }
+
+        .place-value-box .pv-digit {
+            background: white;
+            border-radius: 8px;
+            width: 46px;
+            height: 46px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #333;
+            border: 3px solid #ccc;
+        }
+
+        .place-value-box .pv-digit.highlight {
+            border-color: #f5576c;
+            background: linear-gradient(135deg, #fff1f2 0%, #ffe1e5 100%);
+            color: #f5576c;
+            transform: scale(1.1);
+        }
+
+        .lesson-complete-box {
+            text-align: center;
+            background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+            padding: 30px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+        }
+
+        .lesson-complete-box h2 {
+            color: #155724;
+            margin-bottom: 15px;
+        }
+        /* ===== END LESSONS SECTION ===== */
+
         @media (max-width: 600px) {
             .header-image {
                 max-width: 120px;
@@ -702,6 +754,9 @@
             <button class="main-btn tutorial" onclick="showTutorialSelection()">
                 📚 Learn Math (Tutorials)
             </button>
+            <button class="main-btn" onclick="showLessonsMenu()" style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%); color:#5a2a4d;">
+                📖 Lessons
+            </button>
             <button class="main-btn" onclick="showTablesMenu()">
                 📊 Times Tables & Charts
             </button>
@@ -728,6 +783,19 @@
                 </button>
                 <button class="level-btn division" onclick="showTutorial('division')">
                     ➗ Division
+                </button>
+            </div>
+            <div style="text-align: center; margin-top: 20px;">
+                <button class="btn back-btn" onclick="backToMainMenu()">← Back to Main Menu</button>
+            </div>
+        </div>
+
+        <!-- Lessons Topic Selection -->
+        <div id="lessonsSelection" class="level-selection">
+            <h2 style="color: #667eea; text-align: center; margin-bottom: 20px;">📖 Choose a Lesson</h2>
+            <div class="level-select" style="grid-template-columns: 1fr;">
+                <button class="level-btn" style="background: linear-gradient(135deg, #f5576c 0%, #f093fb 100%);" onclick="showLesson('rounding')">
+                    1️⃣ Rounding Numbers (Tens, Hundreds, Thousands)
                 </button>
             </div>
             <div style="text-align: center; margin-top: 20px;">
@@ -796,6 +864,43 @@
 
             <div style="text-align: center; margin-top: 30px;">
                 <button class="btn back-btn" onclick="backToQuizSelection()">← Back to Quiz Menu</button>
+            </div>
+        </div>
+
+        <!-- Lesson Content Area -->
+        <div id="lessonArea" class="tutorial-area">
+            <div id="lessonContent"></div>
+            <div style="text-align: center; margin-top: 30px;">
+                <button class="btn btn-secondary" id="lessonQuizBtn">Ready? Take the Quiz! 🎮</button>
+                <button class="btn back-btn" onclick="backToLessonsSelection()">← Back to Lessons</button>
+            </div>
+        </div>
+
+        <!-- Lesson Quiz Area (separate quiz, min 30 questions) -->
+        <div id="lessonQuizArea" class="quiz-area">
+            <div class="lesson-progress" id="lessonProgress">Question 1 / 30</div>
+            <div class="score">
+                Score: <span id="lessonScore">0</span> / <span id="lessonTotal">0</span> 🌟
+            </div>
+
+            <div class="question-card">
+                <div class="question" id="lessonQuestion"></div>
+                <div id="lessonPlaceValueBox" class="place-value-box"></div>
+                <input type="number" id="lessonUserAnswer" class="answer-input" placeholder="?" />
+                <br>
+                <button class="btn" onclick="checkLessonAnswer()">Check Answer ✓</button>
+                <button class="btn btn-secondary" onclick="nextLessonQuestion()">Next Question →</button>
+            </div>
+
+            <div class="hidden-answer" id="lessonHiddenBox" onclick="revealLessonAnswer()">
+                <p style="color: #666; margin-bottom: 10px;">📦 Click to reveal the answer</p>
+                <div class="answer-text" id="lessonCorrectAnswer" style="display: none;"></div>
+            </div>
+
+            <div id="lessonFeedback"></div>
+
+            <div style="text-align: center; margin-top: 30px;">
+                <button class="btn back-btn" onclick="backToLessonsSelectionFromQuiz()">← Back to Lessons</button>
             </div>
         </div>
 
@@ -1242,6 +1347,7 @@
             document.getElementById('mainMenu').style.display = 'grid';
             document.getElementById('tutorialSelection').classList.remove('active');
             document.getElementById('quizSelection').classList.remove('active');
+            document.getElementById('lessonsSelection').classList.remove('active');
         }
 
         function showTutorial(topic) {
@@ -1621,6 +1727,289 @@
             window.speechSynthesis.speak(utterance);
         }
         // ===== END COUNTING NUMBERS SECTION =====
+
+        // ===== LESSONS SECTION (Topic 1: Rounding) =====
+        function showLessonsMenu() {
+            document.getElementById('mainMenu').style.display = 'none';
+            document.getElementById('lessonsSelection').classList.add('active');
+        }
+
+        function backToLessonsSelection() {
+            document.getElementById('lessonArea').classList.remove('active');
+            document.getElementById('lessonsSelection').classList.add('active');
+        }
+
+        function backToLessonsSelectionFromQuiz() {
+            document.getElementById('lessonQuizArea').classList.remove('active');
+            document.getElementById('lessonsSelection').classList.add('active');
+        }
+
+        const lessons = {
+            rounding: `
+                <div class="tutorial-content">
+                    <h2>🎯 Lesson 1: Rounding Numbers</h2>
+
+                    <div class="tutorial-section">
+                        <h3>What is Rounding?</h3>
+                        <p>Rounding means changing a number to a nearby "friendlier" number that's easier to work with — like the nearest ten, hundred, or thousand. We keep the number close to its original value, just simpler!</p>
+                        <div class="example-box">
+                            <p>🎒 If a backpack costs $48, we might round it to $50 to make quick shopping math easier!</p>
+                            <div class="math-example">48 ≈ 50</div>
+                        </div>
+                    </div>
+
+                    <div class="tutorial-section">
+                        <h3>The Golden Rounding Rule</h3>
+                        <p><strong>Step 1:</strong> Find the place you're rounding to (tens, hundreds, or thousands) — this is the "rounding digit".</p>
+                        <p><strong>Step 2:</strong> Look at the digit immediately to its <em>right</em> — this is the "decider digit".</p>
+                        <p><strong>Step 3:</strong> If the decider digit is <strong>5, 6, 7, 8, or 9</strong> → round UP (the rounding digit goes up by 1).</p>
+                        <p><strong>Step 4:</strong> If the decider digit is <strong>0, 1, 2, 3, or 4</strong> → round DOWN (the rounding digit stays the same).</p>
+                        <p><strong>Step 5:</strong> Change every digit to the right of the rounding digit to zero.</p>
+                        <div class="tip-box">
+                            <strong>💡 Easy Trick:</strong> "5 or more, raise the score. 4 or less, let it rest!"
+                        </div>
+                    </div>
+
+                    <div class="tutorial-section">
+                        <h3>🔟 Rounding to the Nearest Ten</h3>
+                        <p>Look at the <strong>ones digit</strong> to decide.</p>
+                        <div class="example-box">
+                            <p><strong>Example 1: Round 23 to the nearest ten</strong></p>
+                            <p>The ones digit is <strong>3</strong> (less than 5), so we round down.</p>
+                            <div class="math-example">23 → 20</div>
+                        </div>
+                        <div class="example-box">
+                            <p><strong>Example 2: Round 47 to the nearest ten</strong></p>
+                            <p>The ones digit is <strong>7</strong> (5 or more), so we round up.</p>
+                            <div class="math-example">47 → 50</div>
+                        </div>
+                        <div class="example-box">
+                            <p><strong>Example 3: Round 85 to the nearest ten</strong></p>
+                            <p>The ones digit is <strong>5</strong>, so we round up.</p>
+                            <div class="math-example">85 → 90</div>
+                        </div>
+                    </div>
+
+                    <div class="tutorial-section">
+                        <h3>💯 Rounding to the Nearest Hundred</h3>
+                        <p>Look at the <strong>tens digit</strong> to decide.</p>
+                        <div class="example-box">
+                            <p><strong>Example 1: Round 340 to the nearest hundred</strong></p>
+                            <p>The tens digit is <strong>4</strong> (less than 5), so we round down.</p>
+                            <div class="math-example">340 → 300</div>
+                        </div>
+                        <div class="example-box">
+                            <p><strong>Example 2: Round 682 to the nearest hundred</strong></p>
+                            <p>The tens digit is <strong>8</strong> (5 or more), so we round up.</p>
+                            <div class="math-example">682 → 700</div>
+                        </div>
+                        <div class="example-box">
+                            <p><strong>Example 3: Round 150 to the nearest hundred</strong></p>
+                            <p>The tens digit is <strong>5</strong>, so we round up.</p>
+                            <div class="math-example">150 → 200</div>
+                        </div>
+                    </div>
+
+                    <div class="tutorial-section">
+                        <h3>🧮 Rounding to the Nearest Thousand</h3>
+                        <p>Look at the <strong>hundreds digit</strong> to decide.</p>
+                        <div class="example-box">
+                            <p><strong>Example 1: Round 3,240 to the nearest thousand</strong></p>
+                            <p>The hundreds digit is <strong>2</strong> (less than 5), so we round down.</p>
+                            <div class="math-example">3,240 → 3,000</div>
+                        </div>
+                        <div class="example-box">
+                            <p><strong>Example 2: Round 6,750 to the nearest thousand</strong></p>
+                            <p>The hundreds digit is <strong>7</strong> (5 or more), so we round up.</p>
+                            <div class="math-example">6,750 → 7,000</div>
+                        </div>
+                        <div class="example-box">
+                            <p><strong>Example 3: Round 8,500 to the nearest thousand</strong></p>
+                            <p>The hundreds digit is <strong>5</strong>, so we round up.</p>
+                            <div class="math-example">8,500 → 9,000</div>
+                        </div>
+                    </div>
+
+                    <div class="tip-box">
+                        <strong>💡 Helpful Tip:</strong> Rounding never changes how many digits fit before the rounding place — it only makes the digits after it turn into zeros!
+                    </div>
+                    <div class="tip-box">
+                        <strong>💡 Helpful Tip:</strong> A number that ends exactly at the rounding place (like 340 to the nearest ten) is already rounded — no change needed!
+                    </div>
+                </div>
+            `
+        };
+
+        function showLesson(topic) {
+            document.getElementById('lessonsSelection').classList.remove('active');
+            document.getElementById('lessonArea').classList.add('active');
+            document.getElementById('lessonContent').innerHTML = lessons[topic];
+            document.getElementById('lessonQuizBtn').onclick = function () { startLessonQuiz(topic); };
+            document.querySelector('.container').scrollTop = 0;
+        }
+
+        // ----- Rounding quiz question bank: at least 30 questions, kept separate from the practice quiz -----
+        const roundingQuestionBank = [
+            // Round to nearest TEN (12 questions)
+            { num: 23, roundTo: 10 },
+            { num: 47, roundTo: 10 },
+            { num: 85, roundTo: 10 },
+            { num: 61, roundTo: 10 },
+            { num: 14, roundTo: 10 },
+            { num: 99, roundTo: 10 },
+            { num: 35, roundTo: 10 },
+            { num: 8, roundTo: 10 },
+            { num: 172, roundTo: 10 },
+            { num: 246, roundTo: 10 },
+            { num: 305, roundTo: 10 },
+            { num: 418, roundTo: 10 },
+            // Round to nearest HUNDRED (12 questions)
+            { num: 340, roundTo: 100 },
+            { num: 682, roundTo: 100 },
+            { num: 150, roundTo: 100 },
+            { num: 219, roundTo: 100 },
+            { num: 750, roundTo: 100 },
+            { num: 84, roundTo: 100 },
+            { num: 950, roundTo: 100 },
+            { num: 1249, roundTo: 100 },
+            { num: 3785, roundTo: 100 },
+            { num: 4521, roundTo: 100 },
+            { num: 2650, roundTo: 100 },
+            { num: 599, roundTo: 100 },
+            // Round to nearest THOUSAND (12 questions)
+            { num: 3240, roundTo: 1000 },
+            { num: 6750, roundTo: 1000 },
+            { num: 8500, roundTo: 1000 },
+            { num: 1499, roundTo: 1000 },
+            { num: 2501, roundTo: 1000 },
+            { num: 9999, roundTo: 1000 },
+            { num: 450, roundTo: 1000 },
+            { num: 15250, roundTo: 1000 },
+            { num: 27800, roundTo: 1000 },
+            { num: 34499, roundTo: 1000 },
+            { num: 62500, roundTo: 1000 },
+            { num: 78999, roundTo: 1000 }
+        ];
+
+        let lessonQuizQuestions = [];
+        let lessonQuizIndex = 0;
+        let lessonScore = 0;
+        let lessonTotal = 0;
+
+        function shuffleArray(arr) {
+            const a = arr.slice();
+            for (let i = a.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [a[i], a[j]] = [a[j], a[i]];
+            }
+            return a;
+        }
+
+        function roundToPlace(num, place) {
+            return Math.round(num / place) * place;
+        }
+
+        function placeLabel(place) {
+            return place === 10 ? 'ten' : place === 100 ? 'hundred' : 'thousand';
+        }
+
+        function startLessonQuiz(topic) {
+            document.getElementById('lessonArea').classList.remove('active');
+            document.getElementById('lessonQuizArea').classList.add('active');
+            lessonQuizQuestions = shuffleArray(roundingQuestionBank);
+            lessonQuizIndex = 0;
+            lessonScore = 0;
+            lessonTotal = 0;
+            updateLessonScore();
+            renderLessonQuestion();
+            document.querySelector('.container').scrollTop = 0;
+        }
+
+        function renderLessonQuestion() {
+            if (lessonQuizIndex >= lessonQuizQuestions.length) {
+                showLessonQuizComplete();
+                return;
+            }
+            const q = lessonQuizQuestions[lessonQuizIndex];
+            const answer = roundToPlace(q.num, q.roundTo);
+
+            document.getElementById('lessonProgress').textContent =
+                `Question ${lessonQuizIndex + 1} / ${lessonQuizQuestions.length}`;
+            document.getElementById('lessonQuestion').innerHTML =
+                `Round <strong>${q.num.toLocaleString()}</strong> to the nearest ${placeLabel(q.roundTo)}`;
+            document.getElementById('lessonPlaceValueBox').innerHTML = '';
+            document.getElementById('lessonUserAnswer').value = '';
+            document.getElementById('lessonFeedback').innerHTML = '';
+            document.getElementById('lessonHiddenBox').classList.remove('revealed');
+            document.getElementById('lessonCorrectAnswer').style.display = 'none';
+            document.getElementById('lessonCorrectAnswer').textContent = `The answer is: ${answer.toLocaleString()}`;
+
+            currentLessonQuestion = { num: q.num, roundTo: q.roundTo, answer: answer };
+        }
+
+        let currentLessonQuestion = {};
+
+        function checkLessonAnswer() {
+            const userAnswer = parseInt(document.getElementById('lessonUserAnswer').value);
+            const feedbackDiv = document.getElementById('lessonFeedback');
+
+            if (isNaN(userAnswer)) {
+                feedbackDiv.innerHTML = '<div class="feedback incorrect">Please enter a number! 🤔</div>';
+                return;
+            }
+
+            lessonTotal++;
+
+            if (userAnswer === currentLessonQuestion.answer) {
+                lessonScore++;
+                feedbackDiv.innerHTML = '<div class="feedback correct">🎉 Excellent! That\'s correct! 🌟</div>';
+            } else {
+                feedbackDiv.innerHTML = '<div class="feedback incorrect">Not quite! Try again or check the answer box below. 💪</div>';
+            }
+
+            updateLessonScore();
+        }
+
+        function revealLessonAnswer() {
+            const answerDiv = document.getElementById('lessonCorrectAnswer');
+            const hiddenBox = document.getElementById('lessonHiddenBox');
+
+            if (answerDiv.style.display === 'none') {
+                answerDiv.style.display = 'block';
+                hiddenBox.classList.add('revealed');
+            } else {
+                answerDiv.style.display = 'none';
+                hiddenBox.classList.remove('revealed');
+            }
+        }
+
+        function nextLessonQuestion() {
+            lessonQuizIndex++;
+            renderLessonQuestion();
+        }
+
+        function updateLessonScore() {
+            document.getElementById('lessonScore').textContent = lessonScore;
+            document.getElementById('lessonTotal').textContent = lessonTotal;
+        }
+
+        function showLessonQuizComplete() {
+            document.getElementById('lessonProgress').textContent = 'Quiz Complete! 🎉';
+            document.getElementById('lessonQuestion').innerHTML =
+                `<div class="lesson-complete-box"><h2>🏆 Great Job!</h2><p>You finished all ${lessonQuizQuestions.length} rounding questions!</p><p style="margin-top:10px;">Final Score: ${lessonScore} / ${lessonTotal}</p></div>`;
+            document.getElementById('lessonPlaceValueBox').innerHTML = '';
+            document.getElementById('lessonUserAnswer').style.display = 'none';
+            document.getElementById('lessonFeedback').innerHTML =
+                '<div style="text-align:center; margin-top:15px;"><button class="btn" onclick="restartLessonQuiz()">🔁 Try Again</button></div>';
+            document.getElementById('lessonHiddenBox').style.display = 'none';
+        }
+
+        function restartLessonQuiz() {
+            document.getElementById('lessonUserAnswer').style.display = 'block';
+            document.getElementById('lessonHiddenBox').style.display = 'block';
+            startLessonQuiz('rounding');
+        }
+        // ===== END LESSONS SECTION =====
     </script>
 </body>
 </html>
